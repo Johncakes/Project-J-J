@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1xidnb4eopne"]
+
+[ext_resource type="Script" uid="uid://boaou1d1wttpl" path="res://Characters/Player/player_controller.gd" id="1_ht6wf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6mep6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yeefy"]
+
+[node name="Player" type="Node2D"]
+
+[node name="PlayerController" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ht6wf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerController"]
+shape = SubResource("CapsuleShape2D_6mep6")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerController"]
+scale = Vector2(16.9662, 25.9663)
+texture = SubResource("CanvasTexture_yeefy")
