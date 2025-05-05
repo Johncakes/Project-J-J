@@ -6,14 +6,12 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_yeefy"]
 
-[node name="Player" type="Node2D"]
-
-[node name="PlayerController" type="CharacterBody2D" parent="."]
+[node name="PlayerController" type="CharacterBody2D"]
 script = ExtResource("1_ht6wf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerController"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_6mep6")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerController"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(16.9662, 25.9663)
 texture = SubResource("CanvasTexture_yeefy")

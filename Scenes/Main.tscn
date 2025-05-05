@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bmyfljxxo1q2g"]
+[gd_scene load_steps=10 format=4 uid="uid://bmyfljxxo1q2g"]
 
 [ext_resource type="PackedScene" uid="uid://d1xidnb4eopne" path="res://Characters/Player/Player.tscn" id="1_r150o"]
 [ext_resource type="Script" uid="uid://csfv8p4lkc2kl" path="res://Scenes/scene_transition.gd" id="2_idj7w"]
@@ -6,16 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b6nvfhdbr4j5v" path="res://Sprites/Clouds 1/1.png" id="4_v1gob"]
 [ext_resource type="Texture2D" uid="uid://bt77dfbt8cutq" path="res://Sprites/Clouds 1/2.png" id="5_jw32o"]
 [ext_resource type="Texture2D" uid="uid://4j8xhiklaagy" path="res://Sprites/Clouds 1/4.png" id="6_50glp"]
+[ext_resource type="Script" uid="uid://b32lmesdjxwwl" path="res://Scenes/camera.gd" id="7_jw32o"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kln2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgh2o"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("1_r150o")]
 
 [node name="SceneTransition" type="Area2D" parent="."]
 position = Vector2(171, -1)
@@ -42,7 +39,8 @@ build_mode = 1
 polygon = PackedVector2Array(576, -164, -579, -162, -581, 321, 576, 321)
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(0, -351)
+z_index = -2
+position = Vector2(2, -386)
 scale = Vector2(1.99392, 1.48148)
 texture = ExtResource("4_v1gob")
 
@@ -50,6 +48,13 @@ texture = ExtResource("4_v1gob")
 texture = ExtResource("5_jw32o")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background"]
+z_index = 1
 texture = ExtResource("6_50glp")
+
+[node name="Player" parent="." instance=ExtResource("1_r150o")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+script = ExtResource("7_jw32o")
 
 [connection signal="body_entered" from="SceneTransition" to="SceneTransition" method="_on_body_entered"]
