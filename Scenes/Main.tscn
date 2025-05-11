@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://bmyfljxxo1q2g"]
+[gd_scene load_steps=14 format=4 uid="uid://bmyfljxxo1q2g"]
 
+[ext_resource type="Script" uid="uid://btntrasbl1ihi" path="res://Scenes/main.gd" id="1_4kpch"]
 [ext_resource type="PackedScene" uid="uid://d1xidnb4eopne" path="res://Characters/Player/Player.tscn" id="1_r150o"]
 [ext_resource type="Script" uid="uid://csfv8p4lkc2kl" path="res://Scenes/scene_transition.gd" id="2_idj7w"]
 [ext_resource type="TileSet" uid="uid://efir2v8m3b5k" path="res://TileSet/Tiles.tres" id="3_kln2b"]
@@ -7,13 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://bt77dfbt8cutq" path="res://Sprites/Clouds 1/2.png" id="5_jw32o"]
 [ext_resource type="Texture2D" uid="uid://4j8xhiklaagy" path="res://Sprites/Clouds 1/4.png" id="6_50glp"]
 [ext_resource type="Script" uid="uid://b32lmesdjxwwl" path="res://Scenes/camera.gd" id="7_jw32o"]
-[ext_resource type="Script" uid="uid://da8sdvjnb3hia" path="res://Scenes/time_mechanic.gd" id="8_50glp"]
+[ext_resource type="Script" uid="uid://danp64gasewgb" path="res://UI/canvas_modulate.gd" id="9_grg3l"]
+[ext_resource type="Texture2D" path="res://Assets/daynightcycle-gradient-texture.tres" id="10_frkhe"]
+[ext_resource type="PackedScene" uid="uid://b13do3toweb7y" path="res://UI/day_night_cycle_ui.tscn" id="11_1p5hy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kln2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgh2o"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_4kpch")
 
 [node name="SceneTransition" type="Area2D" parent="."]
 position = Vector2(171, -1)
@@ -39,6 +43,11 @@ tile_set = ExtResource("3_kln2b")
 build_mode = 1
 polygon = PackedVector2Array(576, -164, -579, -162, -581, 321, 576, 321)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(1, -21)
+script = ExtResource("9_grg3l")
+gradient_texture = ExtResource("10_frkhe")
+
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -2
 position = Vector2(2, -386)
@@ -56,10 +65,19 @@ texture = ExtResource("6_50glp")
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+position = Vector2(1.5, 1.5)
+zoom = Vector2(3, 3)
 script = ExtResource("7_jw32o")
 
-[node name="Time mechanic" type="Node" parent="."]
-script = ExtResource("8_50glp")
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="DayNightCycleUI" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("11_1p5hy")]
+offset_left = -178.0
+offset_top = -96.0
+offset_right = -178.0
+offset_bottom = -96.0
+size_flags_horizontal = 0
 
 [connection signal="body_entered" from="SceneTransition" to="SceneTransition" method="_on_body_entered"]
