@@ -14,3 +14,7 @@ config/name="Project J&J"
 run/main_scene="uid://bmyfljxxo1q2g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="Project J&J"
